@@ -82,7 +82,7 @@
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_margin="12dp"
+                            android:layout_marginEnd="12dp"
                             android:src="@drawable/dummy_person" />
 
                     </RelativeLayout>
@@ -177,7 +177,7 @@
                         android:paddingTop="5dp"
                         android:paddingEnd="10dp"
                         android:paddingBottom="5dp"
-                        android:text="view all"
+                        android:text="show all"
                         android:textColor="@color/colorAccent"
                         android:textSize="15sp" />
                 </RelativeLayout>
