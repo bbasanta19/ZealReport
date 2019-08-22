@@ -57,7 +57,7 @@ public class LoginActivity extends ZealActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.btn_login:
                 progressBar.setVisibility(View.VISIBLE);
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivityNew.class));
                 finish();
                 break;
             case R.id.btn_forgot_password:
