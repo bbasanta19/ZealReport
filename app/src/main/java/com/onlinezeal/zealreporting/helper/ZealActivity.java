@@ -1,6 +1,6 @@
 package com.onlinezeal.zealreporting.helper;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by BasantaBK on 20,Aug,2019.

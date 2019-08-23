@@ -1,19 +1,17 @@
 package com.onlinezeal.zealreporting.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.onlinezeal.zealreporting.R;
 import com.onlinezeal.zealreporting.helper.StartSnapHelper;
 import com.onlinezeal.zealreporting.helper.ZealActivity;
@@ -23,7 +21,6 @@ public class MainActivityNew extends ZealActivity implements View.OnClickListene
 
     private RecyclerView recyclerViewMain;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
