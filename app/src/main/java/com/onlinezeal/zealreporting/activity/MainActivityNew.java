@@ -4,23 +4,43 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 import com.onlinezeal.zealreporting.R;
+import com.onlinezeal.zealreporting.fragment.HomeFragment;
+import com.onlinezeal.zealreporting.fragment.TeamFragment;
 import com.onlinezeal.zealreporting.helper.StartSnapHelper;
 import com.onlinezeal.zealreporting.helper.ZealActivity;
 import com.onlinezeal.zealreporting.helper.ZealRecyclerViewAdapter;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivityNew extends ZealActivity implements View.OnClickListener {
 
     private RecyclerView recyclerViewMain;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private LinearLayout bottomNavigation, toolbarTitle;
+    private TabLayout tabLayout;
+    private RelativeLayout homeParent, teamParent, notificationParent, questionsParent;
+    private RelativeLayout lastSelectedView;
+    private FloatingActionButton fabAddNew;
+    private CircleImageView ivProfileImage;
+    private ImageView btnMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,228 +50,96 @@ public class MainActivityNew extends ZealActivity implements View.OnClickListene
         initialiseViews();
         initialiseListener();
 
-        prepareRecyclerView();
-
+        setUpFragment(new HomeFragment(), "home");
     }
 
     @Override
     protected void initialiseViews() {
-        recyclerViewMain = findViewById(R.id.recycler_view_main);
-        swipeRefreshLayout = findViewById(R.id.swiperefresh);
-        //fab = findViewById(R.id.fab_menu);
+        tabLayout = findViewById(R.id.tab_layout);
+        tabLayout.setVisibility(View.GONE);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        homeParent = findViewById(R.id.home_parent);
+        teamParent = findViewById(R.id.team_parent);
+        notificationParent = findViewById(R.id.notification_parent);
+        questionsParent = findViewById(R.id.question_parent);
+        fabAddNew = findViewById(R.id.fab_add_new);
+        toolbarTitle = findViewById(R.id.title_parent);
+        ivProfileImage = findViewById(R.id.iv_profile_image);
+        btnMenu = findViewById(R.id.iv_menu);
+        lastSelectedView = homeParent;
     }
 
     @Override
     protected void initialiseListener() {
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+        homeParent.setOnClickListener(this);
+        teamParent.setOnClickListener(this);
+        notificationParent.setOnClickListener(this);
+        questionsParent.setOnClickListener(this);
+        fabAddNew.setOnClickListener(this);
+        ivProfileImage.setOnClickListener(this);
+        btnMenu.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
-    }
-
-    private void prepareRecyclerView() {
-        HomeRecyclerViewAdapter homeRecyclerViewAdapter = new HomeRecyclerViewAdapter();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivityNew.this, LinearLayoutManager.VERTICAL, false);
-        recyclerViewMain.setLayoutManager(layoutManager);
-        recyclerViewMain.setAdapter(homeRecyclerViewAdapter);
-    }
-
-    private class HomeRecyclerViewAdapter extends ZealRecyclerViewAdapter {
-
-        private final int TYPE_HOD = 0;
-        private final int TYPE_DEPARTMENTS = 1;
-
-        VHHoD vhHoD;
-        VHDepartments vhDepartments;
-
-        @Override
-        public void add(Object object) {
-
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            if (viewType == TYPE_HOD) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_dept_head_parent, parent, false);
-                return new VHHoD(itemView);
-            } else if (viewType == TYPE_DEPARTMENTS) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_dept_parent, parent, false);
-                return new VHDepartments(itemView);
-            }
-            throw new RuntimeException("View not found");
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            if (holder instanceof VHHoD) {
-                vhHoD = (VHHoD) holder;
-                prepareRecyclerViewHoD(vhHoD.recyclerViewHoD);
-
-            } else if (holder instanceof VHDepartments) {
-                vhDepartments = (VHDepartments) holder;
-                prepareRecyclerViewDept(vhDepartments.recyclerViewDepartments);
-
-            }
-
-        }
-
-        private void prepareRecyclerViewHoD(RecyclerView recyclerViewHoD) {
-            HODRecyclerViewAdapter hodRecyclerViewAdapter = new HODRecyclerViewAdapter();
-            LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivityNew.this, LinearLayoutManager.HORIZONTAL, false);
-            recyclerViewHoD.setLayoutManager(layoutManager);
-            recyclerViewHoD.setAdapter(hodRecyclerViewAdapter);
-        }
-
-        private void prepareRecyclerViewDept(RecyclerView recyclerViewDepartments) {
-            DeptRecyclerViewAdapter deptRecyclerViewAdapter = new DeptRecyclerViewAdapter();
-            LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivityNew.this, LinearLayoutManager.VERTICAL, false);
-            recyclerViewDepartments.setLayoutManager(layoutManager);
-            recyclerViewDepartments.setAdapter(deptRecyclerViewAdapter);
-        }
-
-        @Override
-        public int getItemCount() {
-            return 2;
-        }
-
-
-        @Override
-        public int getItemViewType(int position) {
-            if (isTypeHoD(position)) {
-                return TYPE_HOD;
-            }
-            return TYPE_DEPARTMENTS;
-        }
-
-        private boolean isTypeHoD(int position) {
-            return position == 0;
-        }
-
-        private class VHHoD extends RecyclerView.ViewHolder implements View.OnClickListener {
-            private RecyclerView recyclerViewHoD;
-
-            VHHoD(View itemView) {
-                super(itemView);
-                recyclerViewHoD = itemView.findViewById(R.id.recycler_view_department_head);
-//                SnapHelper snapHelper = new LinearSnapHelper();
-                SnapHelper snapHelper = new StartSnapHelper();
-                snapHelper.attachToRecyclerView(recyclerViewHoD);
-            }
-
-            @Override
-            public void onClick(View view) {
-
-            }
-        }
-
-        private class VHDepartments extends RecyclerView.ViewHolder implements View.OnClickListener {
-            private RecyclerView recyclerViewDepartments;
-            private TextView tvTitle, tvViewAll;
-
-            VHDepartments(View itemView) {
-                super(itemView);
-                recyclerViewDepartments = itemView.findViewById(R.id.recycler_view_departments);
-                tvTitle = itemView.findViewById(R.id.tv_departments);
-                tvViewAll = itemView.findViewById(R.id.tv_departments_view_all);
-
-                tvViewAll.setOnClickListener(this);
-            }
-
-            @Override
-            public void onClick(View v) {
-
-            }
+        switch (v.getId()){
+            case R.id.home_parent:
+                if (!getVisibleFragment("home")) {
+                    setUpBottomNavigation(homeParent);
+                    setUpFragment(new HomeFragment(), "home");
+                }
+                break;
+            case R.id.team_parent:
+                if (!getVisibleFragment("team")) {
+                    setUpBottomNavigation(teamParent);
+                    setUpFragment(new TeamFragment(), "team");
+                }
+                break;
         }
     }
 
-
-    private class HODRecyclerViewAdapter extends ZealRecyclerViewAdapter {
-
-        @Override
-        public void add(Object object) {
-
+    public boolean getVisibleFragment(String tag) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.container);
+        assert currentFragment.getTag() != null;
+        if (currentFragment.getTag().equals(tag)) {
+            return true;
         }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_dept_head, parent, false);
-            return new HoDViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return 8;
-        }
-
-        private class HoDViewHolder extends RecyclerView.ViewHolder {
-
-            public HoDViewHolder(View itemView) {
-                super(itemView);
-
-            }
-        }
+        return false;
     }
 
-    private class DeptRecyclerViewAdapter extends ZealRecyclerViewAdapter {
-
-        @Override
-        public void add(Object object) {
-
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_departments, parent, false);
-            return new HoDViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return 8;
-        }
-
-        private class HoDViewHolder extends RecyclerView.ViewHolder {
-
-            public HoDViewHolder(View itemView) {
-                super(itemView);
-
-            }
-        }
+    /**
+     * @param fragment fragment to load
+     */
+    private void setUpFragment(Fragment fragment, String tag) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.container, fragment, tag);
+        fragmentTransaction.commit();
     }
 
+    public void setUpBottomNavigation(RelativeLayout view) {
+        if (lastSelectedView != null) {
+            for (int i = 0; i < lastSelectedView.getChildCount(); i++) {
+                View view1 = lastSelectedView.getChildAt(i);
+                if (view1 instanceof ImageView) {
+                    ((ImageView) view1).setColorFilter(getResources().getColor(R.color.colorLightGrey));
+                } else {
+                    ((TextView) view1).setTextColor(getResources().getColor(R.color.colorLightGrey));
+                }
+            }
+        }
+        for (int i = 0; i < view.getChildCount(); i++) {
+            View view1 = view.getChildAt(i);
+            if (view1 instanceof ImageView) {
+                ((ImageView) view1).setColorFilter(ContextCompat.getColor(this, R.color.colorSelected));
+
+            } else {
+                ((TextView) view1).setTextColor(ContextCompat.getColor(this, R.color.colorSelected));
+            }
+
+        }
+        lastSelectedView = view;
+    }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing">16</dimen>
+    <dimen name="button_radius_large">4</dimen>
+
+    <dimen name="item_padding">8dp</dimen>
+    <dimen name="item_padding_bottom">2dp</dimen>
+
+    <dimen name="view_pager_gap">10</dimen>
+    <dimen name="bottom_navigation_text_size">10sp</dimen>
+</resources>

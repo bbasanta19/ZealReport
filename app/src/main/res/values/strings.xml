@@ -10,4 +10,24 @@
     <string name="forgot_password_title">Forgot password?</string>
     <string name="submit">Submit</string>
     <string name="heads_of_departments">Heads of departments</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fill_up_employee_details">Fill up employee details</string>
+    <string name="all_fields_with_are_mandatory">All fields with (<font color="#f1222f">*</font>) are mandatory</string>
+    <string name="form_full_name">Full Name <font color="#f1222f">*</font></string>
+    <string name="form_email">Email <font color="#f1222f">*</font></string>
+    <string name="form_contact">Contact <font color="#f1222f">*</font></string>
+    <string name="form_address">Address <font color="#f1222f">*</font></string>
+    <string name="form_gender">Gender <font color="#f1222f">*</font></string>
+    <string name="form_password">Password <font color="#f1222f">*</font></string>
+    <string name="form_dob">Birth Date <font color="#f1222f">*</font></string>
+    <string name="form_confirm_password">Confirm Password <font color="#f1222f">*</font></string>
+    <string name="form_department">Department <font color="#f1222f">*</font></string>
+    <string name="form_designation">Designation <font color="#f1222f">*</font></string>
+    <string name="form_date_of_join">Joined Date <font color="#f1222f">*</font></string>
+    <string name="form_blood_group">Blood Group</string>
+    <string name="form_marital_status">Marital Status</string>
+    <string name="status">Status</string>
+    <string name="hint_email">example@example.com</string>
 </resources>

@@ -1,105 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9FAFA"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    android:background="@color/colorWhite">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar_parent"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        app:elevation="4dp"
-        tools:targetApi="lollipop">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation_parent"
+        android:background="@color/colorWhite"
+        android:fitsSystemWindows="true">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll">
+            app:elevation="0dp">
 
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                app:elevation="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                tools:targetApi="lollipop">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/card_drawable_bottom_corner"
-                    android:orientation="vertical"
-                    android:padding="5dp">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/title_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="0dp"
-                        android:padding="10dp">
+                        android:layout_weight="2"
+                        android:gravity="start"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
+                        <ImageView
+                            android:id="@+id/toolbar_start_image_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:orientation="vertical">
+                            android:padding="5dp"
+                            android:src="@drawable/logo"/>
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:src="@drawable/logo" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/normal"
-                                android:includeFontPadding="false"
-                                android:text="21 August, 2019"
-                                android:textColor="@color/colorWhiteLightt"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="2dp"
-                                android:fontFamily="@font/normal"
-                                android:includeFontPadding="false"
-                                android:text="Hello, Patricia"
-                                android:textColor="@color/colorWhite"
-                                android:textSize="29sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/notification_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="end"
+                        android:orientation="horizontal">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
+                            android:id="@+id/iv_profile_image"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="12dp"
+                            android:layout_marginEnd="5dp"
                             android:src="@drawable/dummy_person" />
 
-                    </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/iv_menu"
+                            android:layout_width="25dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_menu"
+                            android:tint="@color/colorAccent" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/colorBlack"
+                app:tabIndicatorHeight="1dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorBlack"
+                app:tabTextAppearance="@style/TabTheme" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_add"
+            android:tint="@color/colorWhite"
+            app:elevation="5dp"
+            app:fabSize="normal"
+            app:layout_anchorGravity="bottom"
+            app:rippleColor="@color/colorAccent"
+            app:useCompatPadding="true" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bottom_navigation_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:elevation="1dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground" />
+
+        <LinearLayout
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorWhite"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!--android:background="?attr/selectableItemBackground"-->
+
+            <RelativeLayout
+                android:id="@+id/home_parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="@dimen/item_padding">
+
+                <ImageView
+                    android:id="@+id/home"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_home"
+                    android:tint="@color/colorSelected" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/home"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/normal"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="Home"
+                    android:textColor="@color/colorSelected"
+                    android:textSize="11sp"
+                    tools:ignore="SmallSp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/team_parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+
+                android:focusable="true"
+                android:paddingTop="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding_bottom">
+
+                <ImageView
+                    android:id="@+id/iv_team"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:paddingTop="1dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_group"
+                    android:tint="@color/colorLightGrey" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_team"
+                    android:fontFamily="@font/normal"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="Team"
+                    android:textColor="@color/colorLightGrey"
+                    android:textSize="11sp"
+                    tools:ignore="SmallSp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/question_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding_bottom">
+
+                <ImageView
+                    android:id="@+id/iv_to_do"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_to_do_list"
+                    android:tint="@color/colorLightGrey" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_to_do"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/normal"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="To do"
+                    android:textColor="@color/colorLightGrey"
+                    android:textSize="11sp"
+                    tools:ignore="SmallSp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/notification_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding_bottom">
+
+                <ImageView
+                    android:id="@+id/iv_notification"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_notification"
+                    android:tint="@color/colorLightGrey" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_notification"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/normal"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="Notification"
+                    android:textColor="@color/colorLightGrey"
+                    android:textSize="11sp"
+                    tools:ignore="SmallSp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swiperefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_parent" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

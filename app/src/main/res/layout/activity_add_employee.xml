@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.AddEmployeeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimaryDark"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/back_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                android:paddingStart="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/toolbar_start_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/colorAccent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/title_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:paddingStart="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/normal"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:gravity="center"
+                    android:text="New Employee"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logout_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="end|center"
+                android:paddingEnd="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/toolbar_end_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_logout"
+                    android:tint="@color/colorAccent"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/normal"
+                android:textStyle="bold"
+                android:text="@string/fill_up_employee_details"
+                android:includeFontPadding="false"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:textSize="19sp"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/normal"
+                android:text="@string/all_fields_with_are_mandatory"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorLightGrey" />
+
+            <!--    full name    -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/normal"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:text="@string/form_full_name"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border_radius_etext_unfill"
+                android:fontFamily="@font/normal"
+                android:hint="fname lname"
+                android:includeFontPadding="false"
+                android:maxLines="1" />
+
+            <!--    email    -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/normal"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:text="@string/form_email"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border_radius_etext_unfill"
+                android:fontFamily="@font/normal"
+                android:hint="@string/hint_email"
+                android:includeFontPadding="false"
+                android:maxLines="1" />
+
+            <!--    contact    -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/normal"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:text="@string/form_contact"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border_radius_etext_unfill"
+                android:fontFamily="@font/normal"
+                android:hint="Personal"
+                android:includeFontPadding="false"
+                android:maxLines="1" />
+
+            <EditText
+                android:id="@+id/et_contact_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border_radius_etext_unfill"
+                android:fontFamily="@font/normal"
+                android:hint="Company (optional)"
+                android:includeFontPadding="false"
+                android:maxLines="1" />
+
+            <!--    address    -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/normal"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:text="@string/form_address"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border_radius_etext_unfill"
+                android:fontFamily="@font/normal"
+                android:hint="address"
+                android:includeFontPadding="false"
+                android:maxLines="1" />
+
+            <!--    DOB    -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/normal"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:text="@string/form_dob"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/tv_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border_radius_etext_unfill"
+                android:fontFamily="@font/normal"
+                android:enabled="false"
+                android:clickable="true"
+                android:hint="select date"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:focusable="true" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

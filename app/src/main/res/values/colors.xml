@@ -7,6 +7,7 @@
     <!--<color name="colorPrimaryDark">#85C608</color>-->
     <color name="colorPrimaryDark">#D3F38F</color>
     <color name="colorAccent">#85C608</color>
+    <color name="colorSelected">#85C608</color>
 
     <color name="colorBackground">#F2F2F2</color>
     <color name="colorTransparent">#00ffffff</color>
@@ -17,6 +18,8 @@
     <color name="colorLightGrey">#8c8c8c</color>
     <color name="colorLightLightGrey">#998c8c8c</color>
     <color name="colorDarkGrey">#555555</color>
+    <color name="colorMterialRed">#d50000</color>
+    <color name="colorAppDark">#237516</color>
 
     <color name="black_semi_transparent">#B2000000</color>
     <color name="background">#e5e5e5</color>
